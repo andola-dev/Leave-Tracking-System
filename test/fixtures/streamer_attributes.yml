@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_master: 
+  length: MyString
+  width: MyString
+  left_color: MyString
+  right_color: MyString
+  cut: MyString
+
+two:
+  product_master: 
+  length: MyString
+  width: MyString
+  left_color: MyString
+  right_color: MyString
+  cut: MyString

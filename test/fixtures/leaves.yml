@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  from_date: 2013-02-07 18:32:10
+  to_date: 2013-02-07 18:32:10
+  days: 1
+  reason: MyText
+
+two:
+  from_date: 2013-02-07 18:32:10
+  to_date: 2013-02-07 18:32:10
+  days: 1
+  reason: MyText

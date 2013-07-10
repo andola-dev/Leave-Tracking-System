@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  item_master: 
+  sub_item_id: MyString
+  description: MyString
+  product_routes: 
+
+two:
+  item_master: 
+  sub_item_id: MyString
+  description: MyString
+  product_routes: 

@@ -1,0 +1,143 @@
+<%= javascript_include_tag "jquery", "bootstrap-datepicker" %>
+<%= stylesheet_link_tag "datepicker" %>
+<script>
+$(function(){
+  //$('.datepicker').datepicker({dateFormat: 'mm-dd-yyyy',"autoclose": true})
+  //$("[data-behaviour~='datepicker']").datepicker({
+  //    "format": "mm-dd-yyyy",
+  //    "weekStart": 1,
+  //    "autoclose": true
+  //});
+
+d
+
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 
+var checkin = $('#leave_from_date').datepicker({
+  onRender: function(date) {
+    alert('dd');
+    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  }
+}).on('changeDate', function(ev) {
+
+  if (ev.date.valueOf() > checkout.date.valueOf()) {
+    var newDate = new Date(ev.date)
+    newDate.setDate(newDate.getDate() + 1);
+    checkout.setValue(newDate);
+  }
+  checkin.hide();
+  $('#leave_to_date')[0].focus();
+}).data('datepicker');
+var checkout = $('#leave_to_date').datepicker({
+  onRender: function(date) {
+    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  }
+}).on('changeDate', function(ev) {
+  checkout.hide();
+}).data('datepicker');
+});
+
+</script>
+<%= form_for @leave ,:html => { :class => 'form-horizontal well' } do |f| %>
+  <% if @leave.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this leave from being saved:</h2>
+
+      <ul style="color:red;">
+      <% @leave.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <table class="table table-striped" id="newtab">
+	<thead>
+	    <tr>
+	      <th>User</th>
+	      <th>From Date</th>
+	      <th>ToDate</th>
+	      <th>#of Days</th>
+	      <th>Type</th>
+	    </tr>
+		
+	  </thead>
+	  <tbody>
+	  
+	        <tr>	 
+	           <td>
+	              <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true"%> 	
+	        
+	           </td>
+	        
+               <td>
+					<%= f.text_field :from_date , :class => 'datepicker text_field',:required => "true" %>
+					
+		       </td>
+              <td>
+					<%= f.text_field :to_date , :class => 'datepicker text_field',:required => "true", :onblur =>"calculate_date()" %>
+	           </td>
+               <td>	
+			      <%= f.text_field :days, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4 %>
+		       </td>
+			 <td>
+			   <select id="leave_leave_type_id" name="leave[leave_type_id]">
+							<% LeaveType.find(:all, :order => 'id').each do |account|%>
+								<option value="<%=account.id%>" class="select_leave" style="color:<%=account.color %>;" >
+								<span class="select_leave" ></span>
+								<%=account.option %> 
+								</option>
+							<%end%>     
+				</select>
+			 </td>
+         </tr>
+		<tr>
+			<td colspan="4">
+			Reason:
+			 <%= f.text_area :reason, :style=>"width: 860px;height: 54px;" %>
+			</td>
+	    </tr>
+	  <tr>
+		<td colspan="4">
+			<%= f.submit "Submit", :class => 'btn btn-primary', :onclick=>"return validate_date();" %>
+			<%= link_to t('.cancel',:default => t("helpers.links.cancel")),leaves_path, :class => 'btn' %>
+		</td>
+	  </tr>
+		
+	</tbody>
+   </table>
+ 
+<% end %>
+<script>
+function validate_date(){
+	var fr_value = $("#leave_from_date").val();
+	var to_value = $("#leave_to_date").val();
+	if (fr_value > to_value){
+	alert("From Date must be less than the To Date!")
+	return false;
+	}
+
+}
+function calculate_date(){
+    var date1 = $("#leave_from_date").val();
+    var date2 = $("#leave_to_date").val();
+    var z=1000*60*60*24;   
+    var x=date1.split("/");     
+    var y=date2.split("/");       
+    var d1=new Date(x[2],(x[0]-1),x[1]);
+    var d2=new Date(y[2],(y[0]-1),y[1]);         
+    var a = d1.getTime();
+    var b = d2.getTime();  
+    var d = (b-a)/z;   
+    if (d>0){
+    $('#leave_days').val(d);
+    }
+    else if(d==0){
+    $('#leave_days').val('1');
+    }else{
+    $('#leave_days').val('');
+    }
+    
+}
+</script>

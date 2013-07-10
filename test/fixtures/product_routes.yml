@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  route_id: MyString
+  action_01: MyString
+  action_02: MyString
+  action_03: MyString
+  action_04: MyString
+  action_05: MyString
+  action_06: MyString
+  action_07: MyString
+  action_08: MyString
+  action_09: MyString
+  action_10: MyString
+
+two:
+  route_id: MyString
+  action_01: MyString
+  action_02: MyString
+  action_03: MyString
+  action_04: MyString
+  action_05: MyString
+  action_06: MyString
+  action_07: MyString
+  action_08: MyString
+  action_09: MyString
+  action_10: MyString

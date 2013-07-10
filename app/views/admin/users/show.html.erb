@@ -1,0 +1,23 @@
+<%- model_class = InventoryUser -%>
+<div class="form_con pad_2">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>Quantity</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if !@inventory_users.blank?%>
+    <%@inventory_users.each do |inv_user|%>  
+      <tr>      
+        <td><%= inv_user.inventory.item_name %></td>
+        <td><%= inv_user.qty.to_i %></td>
+	<td><%= inv_user.created_at.strftime("%m/%d/%Y") %></td>      
+      </tr>
+    <% end %>
+   <% end %>
+  </tbody>
+</table>
+</div>

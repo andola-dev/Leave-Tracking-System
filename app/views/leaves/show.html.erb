@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>From date:</b>
+  <%= @leave.from_date %>
+</p>
+
+<p>
+  <b>To date:</b>
+  <%= @leave.to_date %>
+</p>
+
+<p>
+  <b>Days:</b>
+  <%= @leave.days %>
+</p>
+
+<p>
+  <b>Reason:</b>
+  <%= @leave.reason %>
+</p>
+
+
+<%= link_to 'Edit', edit_leafe_path(@leave) ,  :class => 'btn btn-primary' %> |
+<%= link_to 'Back', leaves_path  ,  :class => 'btn'%>

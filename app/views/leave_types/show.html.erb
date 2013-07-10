@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @leave_type.option %>
+</p>
+
+<p>
+  <b>Color:</b>
+  <%= @leave_type.color %>
+</p>
+
+<p>
+  <b>Leave count:</b>
+  <%= @leave_type.leave_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_leave_type_path(@leave_type) %> |
+<%= link_to 'Back', leave_types_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sku_group: MyString
+  wc_code: MyString
+  per_item: 1.5
+  per_variant: 1.5
+  setup: 1.5
+  per_100: 1.5
+
+two:
+  sku_group: MyString
+  wc_code: MyString
+  per_item: 1.5
+  per_variant: 1.5
+  setup: 1.5
+  per_100: 1.5

@@ -1,0 +1,51 @@
+<%#= javascript_include_tag  "fullcalendar","jquery.qtip-1.0.0.min.js" %>
+<%= javascript_include_tag  "fullcalendar" %>
+
+
+
+
+<div style="width:100%" class="sup_mc">
+<div style="width:110px; margin:0px auto; margin-bottom:20px;"><%#= link_to "+ New Event", new_event_path, :class=>"but_evnt" %></div>
+<div id='calendar'></div>
+<div style="clear:both;height:20px"></div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+//$('a[title]').qtip({ style: { name: 'cream', tip: true } })	
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar').fullCalendar({ 
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			editable: true,
+			loading: function(bool){
+            if (bool) 
+                $('#loading').show();
+            else 
+                $('#loading').hide();
+            },
+					eventSources: [{
+					url: '/leaves',
+					color: '#ff0000',
+					textColor: '#ffffff',
+					border:'1px solid #7BD148',
+					ignoreTimezone: false
+				}],
+        eventRender: function(event, element) {
+            element.attr('title', event.tip);
+        }
+        
+		});
+		
+	});
+
+</script>

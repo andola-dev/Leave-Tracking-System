@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_master: 
+  layer1_length: MyString
+  layer2_length: MyString
+  layer3_length: MyString
+  layer1_width: MyString
+  layer2_width: MyString
+  layer3_width: MyString
+
+two:
+  product_master: 
+  layer1_length: MyString
+  layer2_length: MyString
+  layer3_length: MyString
+  layer1_width: MyString
+  layer2_width: MyString
+  layer3_width: MyString

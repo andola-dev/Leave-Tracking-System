@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_code: MyString
+  is_inventory: false
+  is_alt_code_available: false
+  product_type: MyString
+  style: MyString
+  options: MyString
+  description: MyString
+  inventory_sub_comp: MyString
+  alt_sub_comp: MyString
+  alt_product_code: MyString
+  alt_product_sub_comp: MyString
+
+two:
+  product_code: MyString
+  is_inventory: false
+  is_alt_code_available: false
+  product_type: MyString
+  style: MyString
+  options: MyString
+  description: MyString
+  inventory_sub_comp: MyString
+  alt_sub_comp: MyString
+  alt_product_code: MyString
+  alt_product_sub_comp: MyString

@@ -1,0 +1,39 @@
+<%= form_for :user, :url => {:controller=>"admin/users",:action => "update", :id=>params[:id]},:method=>"PUT",:html => { :class => 'form-horizontal well' } do |f| %>
+ <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul style="color:red;">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <table class="table table-striped" id="newtab">
+	<thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Email</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	     <tr>	 
+                   <td>
+		       <%= f.text_field :name, :class => 'text_field',:required => "true" ,:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')"%>
+		   </td>
+  
+                    <td>
+		       <%= f.text_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
+	            </td>
+                    <td>		
+		        <%= f.submit "Submit", :class => 'btn btn-primary' %>
+                        <%= link_to t('.cancel', 
+                                       :default => t("helpers.links.cancel")),
+                                       admin_users_path, :class => 'btn' %>
+		    </td>
+  
+                 </tr>
+	      </tbody>
+      </table>
+<% end %>

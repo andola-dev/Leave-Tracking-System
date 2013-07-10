@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rg_sku: MyString
+  work_center: MyString
+  qty: 1
+  estimate_time: 1
+  avg_time: 1
+
+two:
+  rg_sku: MyString
+  work_center: MyString
+  qty: 1
+  estimate_time: 1
+  avg_time: 1

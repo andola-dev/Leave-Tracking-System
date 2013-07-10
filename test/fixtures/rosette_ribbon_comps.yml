@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_master: 
+  inventory_product_code: MyString
+  inventroy_sub_comp: MyString
+  alt_sub_comp: MyString
+
+two:
+  product_master: 
+  inventory_product_code: MyString
+  inventroy_sub_comp: MyString
+  alt_sub_comp: MyString

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_master: 
+  layer1_color: MyString
+  layer2_color: MyString
+  layer3_color: MyString
+  layer1_option: MyString
+  layer2_option: MyString
+  layer3_option: MyString
+
+two:
+  product_master: 
+  layer1_color: MyString
+  layer2_color: MyString
+  layer3_color: MyString
+  layer1_option: MyString
+  layer2_option: MyString
+  layer3_option: MyString
