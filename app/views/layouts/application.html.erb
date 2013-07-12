@@ -49,7 +49,7 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav pull-right">
 	             <%if user_signed_in? and current_user.admin?%>
-					 <%if params[:controller] == "leaves"%><li class="active_mnu"><%else%><li><%end%>
+					 <%if (params[:controller] == "leaves") && (params[:action] != "calendar") %><li class="active_mnu"><%else%><li><%end%>
 					  <%= link_to "Leave Management", leaves_path  %></li>
 					 <%if params[:controller] == "leave_types"%><li class="active_mnu"><%else%><li><%end%>
 					  <%= link_to "Leave Type Management", leave_types_path  %></li>
@@ -146,7 +146,7 @@
     </div> <!-- /container -->
 	<div class="push_down"></div>
 	<footer>
-        <div class="footer_bg">Developed by <a href="http://www.andolasoft.com/" target="_blank">Andolasoft</a></div>
+        <div class="footer_bg">Developed by <a href="http://www.andolasoft.com/" target="_blank">Andolasoft</a> (<b><i>Team ROR</b></i>)</div>
     </footer>
     <!-- Javascripts
     ================================================== -->

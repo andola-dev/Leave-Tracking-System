@@ -8,15 +8,12 @@ $(function(){
   //    "weekStart": 1,
   //    "autoclose": true
   //});
-
-d
-
+$('select#leave_leave_type_id').attr("disabled","true");
 var nowTemp = new Date();
 var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  
 var checkin = $('#leave_from_date').datepicker({
   onRender: function(date) {
-    alert('dd');
     return date.valueOf() < now.valueOf() ? 'disabled' : '';
   }
 }).on('changeDate', function(ev) {
@@ -36,7 +33,20 @@ var checkout = $('#leave_to_date').datepicker({
 }).on('changeDate', function(ev) {
   checkout.hide();
 }).data('datepicker');
+$('#leave_user_id').on('change', function() {
+  if(this.value != ""){  
+    $("input[type='text'],textarea").removeAttr("disabled");
+    $('select#leave_leave_type_id').removeAttr("disabled");
+  }else{
+    $("input[type='text'],textarea").attr("disabled","true");
+    $("input[type='text'],textarea").val('')
+    $('select#leave_leave_type_id').attr("disabled","true");
+  }
+
 });
+
+});
+
 
 </script>
 <%= form_for @leave ,:html => { :class => 'form-horizontal well' } do |f| %>
@@ -51,63 +61,66 @@ var checkout = $('#leave_to_date').datepicker({
       </ul>
     </div>
   <% end %>
+  <div class="control-group">
+    <label class='control-label'>User</label>
+    <div class="controls">
+      <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true"%> 	
+    </div>
+  </div>
 
- <table class="table table-striped" id="newtab">
-	<thead>
-	    <tr>
-	      <th>User</th>
-	      <th>From Date</th>
-	      <th>ToDate</th>
-	      <th>#of Days</th>
-	      <th>Type</th>
-	    </tr>
-		
-	  </thead>
-	  <tbody>
-	  
-	        <tr>	 
-	           <td>
-	              <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true"%> 	
-	        
-	           </td>
-	        
-               <td>
-					<%= f.text_field :from_date , :class => 'datepicker text_field',:required => "true" %>
-					
-		       </td>
-              <td>
-					<%= f.text_field :to_date , :class => 'datepicker text_field',:required => "true", :onblur =>"calculate_date()" %>
-	           </td>
-               <td>	
-			      <%= f.text_field :days, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4 %>
-		       </td>
-			 <td>
-			   <select id="leave_leave_type_id" name="leave[leave_type_id]">
-							<% LeaveType.find(:all, :order => 'id').each do |account|%>
-								<option value="<%=account.id%>" class="select_leave" style="color:<%=account.color %>;" >
-								<span class="select_leave" ></span>
-								<%=account.option %> 
-								</option>
-							<%end%>     
-				</select>
-			 </td>
-         </tr>
-		<tr>
-			<td colspan="4">
-			Reason:
-			 <%= f.text_area :reason, :style=>"width: 860px;height: 54px;" %>
-			</td>
-	    </tr>
-	  <tr>
-		<td colspan="4">
-			<%= f.submit "Submit", :class => 'btn btn-primary', :onclick=>"return validate_date();" %>
-			<%= link_to t('.cancel',:default => t("helpers.links.cancel")),leaves_path, :class => 'btn' %>
-		</td>
-	  </tr>
-		
-	</tbody>
-   </table>
- 
+  <div class="control-group">
+    <label class='control-label'>From Date</label>
+    <div class="controls">
+      <%= f.text_field :from_date , :class => 'datepicker text_field',:required => "true", :disabled=>"true" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class='control-label'>To Date</label>
+    <div class="controls">
+      <%= f.text_field :to_date , :class => 'datepicker text_field',:required => "true", :disabled=>"true", :onblur =>"calculate_date()" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class='control-label'>#of Days</label>
+    <div class="controls">
+      <%= f.text_field :days, :class => 'text_field',:required => "true", :disabled=>"true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4 %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class='control-label'>Type</label>
+    <div class="controls">    
+       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ c.option, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true"%> 	    
+
+    <!--
+       <select id="leave_leave_type_id" name="leave[leave_type_id]" style="width:100px">
+	<% LeaveType.find(:all, :order => 'id').each do |account|%>
+		<option value="<%=account.id%>" class="select_leave" style="color:<%=account.color %>;" >
+		<span class="select_leave" ></span>
+		<%=account.option %> 
+		</option>
+	<%end%>     
+       </select> 
+    -->
+    </div>
+  </div>
+
+   <div class="control-group">
+    <label class='control-label'>Reason</label>
+    <div class="controls">
+      <%= f.text_area :reason, :rows=>5 , :disabled=>"true"%>
+    </div>
+  </div>
+
+   <div class="form-actions">
+     <%= f.submit "Submit", :class => 'btn btn-primary', :onclick=>"return validate_date();" %>
+     <%= link_to t('.cancel',:default => t("helpers.links.cancel")),leaves_path, :class => 'btn' %>
+
+   </div>
+
+
 <% end %>
 <script>
 function validate_date(){

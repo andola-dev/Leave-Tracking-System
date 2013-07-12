@@ -1,11 +1,8 @@
 <%#= javascript_include_tag  "fullcalendar","jquery.qtip-1.0.0.min.js" %>
 <%= javascript_include_tag  "fullcalendar" %>
 
-
-
-
 <div style="width:100%" class="sup_mc">
-<div style="width:110px; margin:0px auto; margin-bottom:20px;"><%#= link_to "+ New Event", new_event_path, :class=>"but_evnt" %></div>
+<div style="position:absolute;margin-left:270px;width:110px; margin-bottom:10px;font-weight:bold;font-size: 16px;"><%= link_to "+ New Leave", new_leafe_path, :class=>"but_evnt" %></div>
 <div id='calendar'></div>
 <div style="clear:both;height:20px"></div>
 </div>
@@ -21,6 +18,8 @@ $(document).ready(function() {
 		var y = date.getFullYear();
 		
 		$('#calendar').fullCalendar({ 
+		        height: 350,
+		        theme: true,
 			header: {
 				left: 'prev,next today',
 				center: 'title',

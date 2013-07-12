@@ -25,7 +25,7 @@
 		   </td>
   
                     <td>
-		     <%= f.text_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
+		     <%= f.email_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
 	           </td>
                    <td>		
 		       <%= f.submit "Submit", :class => 'btn btn-primary' %>
