@@ -52,8 +52,11 @@ class Admin::UsersController < ApplicationController
   end
   
   def show
-    user=User.find params[:id]
-    @inventory_users=user.inventory_users
+    #user=User.find params[:id]
+    #@inventory_users=user.inventory_users
+    @user=User.find params[:id]
+    @leaves = User.get_uniq_leaves_per_user(@user.id)
+
   end
   
    def edit

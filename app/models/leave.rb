@@ -20,6 +20,11 @@ class Leave < ActiveRecord::Base
     
   end
   
+  # Calculation for remaining balance for leave
+  def self.calculate_leave_remaining actual_leave_count, leave_taken_days
+    return actual_leave_count.to_i - leave_taken_days.to_i
+  end
+
  ## validates :from_date, :presence => true
   ##validates :to_date, :presence => true
  ## validates :days, :presence => true
