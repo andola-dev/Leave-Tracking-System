@@ -96,6 +96,17 @@ def calendar
     #render :text => events.to_json
 end 
   
-  
-  
+  def get_leave_count_per_user
+   puts "-----------------------------"
+   actual =  LeaveTypeUser.by_user_and_leave_type(params[:user_id],params[:lvt_id])
+   @actual = actual.first.leave_count
+   
+   taken =  User.get_uniq_leaves_per_user(params[:user_id],params[:lvt_id])
+   @taken = !taken.blank? ? taken.first.days : 0
+   
+   
+   #{"user_id"=>"580", "lvt_id"=>"3", "controller"=>"leaves", "action"=>"get_leave_count_per_user"}
+
+   render :text => [@actual,@taken]
+  end
 end

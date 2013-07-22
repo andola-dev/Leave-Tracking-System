@@ -11,30 +11,49 @@
     </div>
   <% end %>
  
-  <table class="table table-striped" id="newtab">
-	<thead>
-	    <tr>
-	      <th>Name</th>
-	      <th>Email</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	        <tr>	 
-                   <td>
-		    <%= f.text_field :name, :class => 'text_field',:required => "true" ,:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')"%>
-		   </td>
+   <div class="control-group">
+    <label class='control-label'>Name</label>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field',:required => "true" ,:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')"%>
+    </div>
+  </div>
+ 
+   <div class="control-group">
+    <label class='control-label'>Email</label>
+    <div class="controls">
+      <%= f.email_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
+    </div>
+  </div>
+  <% i=1  %>
+    <% LeaveType.find(:all, :order => 'id').each do |account|%>
+     <div class="control-group">
+       <label class='control-label'><%=account.option %> </label>
+       <div class="controls">
+        <%#=lvt.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ , c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true"%> 
+        <%#= hidden_field_tag "leave_type_id", :value=>account.id %>       
+        
+        
+        <%= text_field_tag "leave_type_users[#{account.id}][leave_count]", "",:class => 'text_field',:required => "true" ,:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')", :style=>"width:50px", :onkeypress=>"return numbersonly(event);", :onblur => 'chk_assign_leave(this," ' +  account.leave_count.to_s  + ' ")', :required => true %>
+        
+        &nbsp;&nbsp;&nbsp;   
+        <span style="font-style:italic">(max: <%=account.leave_count%>)</span>
+        <%#= select_year(0, :prompt => 'Year',:start_year => Time.now.year, :end_year => Time.now.year+14,:name=>"year", 'data-encrypted-name' =>"year" ,:html_options=>{:class=>"drop_down",:style=>"width:50px;"})%>
+        <%#= select_tag "credit", "",((0..7)) %>
+                
+       </div>
+     </div>
+     <%i+=1%>   
+    <%end%>     
+
   
-                    <td>
-		     <%= f.email_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
-	           </td>
-                   <td>		
-		       <%= f.submit "Submit", :class => 'btn btn-primary' %>
-                       <%= link_to t('.cancel',
-                                      :default => t("helpers.links.cancel")),
-                                      admin_users_path, :class => 'btn' %>
-		 </td>
-  
-                </tr>
-	</tbody>
-   </table>
+  <div class="form-actions">
+     <%= f.submit "Submit", :class => 'btn btn-primary' %>
+     <%= link_to t('.cancel',
+              :default => t("helpers.links.cancel")),
+              admin_users_path, :class => 'btn' %>
+
+  </div>
+ 
+ 
+ 
 <% end %>

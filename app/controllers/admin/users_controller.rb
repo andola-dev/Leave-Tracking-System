@@ -11,11 +11,15 @@ class Admin::UsersController < ApplicationController
   end
   
   def create
+    @lvtype = []
     @user = User.new(params[:user])
     @user.password = Devise.friendly_token[0,20]
     respond_to do |format|
       if @user.save
-        p params
+       @lvtype = params[:leave_type_users]
+       @lvtype.each_with_index do |lv,i|
+         LeaveTypeUser.create(:user_id=>@user.id,:leave_type_id=>lv[0],:leave_count=>lv[1]["leave_count"])
+        end
         format.html { redirect_to admin_users_path, :notice => "User '#{@user.name}' was successfully created." }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
