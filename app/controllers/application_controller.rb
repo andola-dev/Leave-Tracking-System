@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
 
   ##redirect to Leave listing page after login
   def after_sign_in_path_for(resource)
-   #leaves_url
-
-  calendar_path
+   calendar_path
+  end
+  
+  def after_sign_out_path_for(resource)
+   calendar_path
   end
 
   private

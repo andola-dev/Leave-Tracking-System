@@ -2,8 +2,8 @@ RGErp::Application.routes.draw do
 
   resources :leave_types
   resources :leaves 
-  
-  root :to => redirect("/users/sign_in")
+  #root :to => redirect("/users/sign_in")
+  root :to => redirect("/calendar")
   devise_for :users, :skip => "registrations"
   match "/save_password"  => "users#save_password", :via => [:put]
   match "/change_password"  => "users#change_password"

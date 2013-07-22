@@ -2,7 +2,8 @@ class LeavesController < ApplicationController
   # GET /leaves
   # GET /leaves.json
  # before_filter :authenticate_user!, :except=>[:calendar]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except=>[:calendar, :index]  
+
   def index
     @leaves = Leave.all
     respond_to do |format|
