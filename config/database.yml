@@ -12,11 +12,11 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: LTS
+  database: LTS_dev
   pool: 5
-  username: lts
-  password: lts
-  socket: /var/lib/mysql/mysql.sock
+  username: root
+  password: 
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,25 +25,18 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: BKR_IMS_test
+  database: LTS_test
   pool: 5
-  username: BKR_IMS
-  password: BKR_IMS
-  socket: /var/lib/mysql/mysql.sock
+  username: root
+  password: 
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: RG_ERP_production
+  database: LTS_Prod
   pool: 5
   username: root
   password:
-  socket: /var/lib/mysql/mysql.sock
-ctp:
-  adapter: mysql2
-  username: ctp
-  password: ctp
-  pool: 5
-  database: ribbons
-  #host: 192.168.2.100  
+  socket: /var/run/mysqld/mysqld.sock
