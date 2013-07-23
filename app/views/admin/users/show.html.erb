@@ -1,6 +1,6 @@
 <h3>Leave history of '<%=@user.name%>'</h3>
 
-<div class="form_con pad_2">
+<div class="form_con pad_2" style="width:80%">
 <table class="table table-striped">
   <thead>
     <tr>
@@ -26,7 +26,31 @@
   </tbody>
 </table>
 </div>
+<br/>    
+ <table class="table table-striped" id="leave_tbl">
+  <thead>
+  <tr>   
+    <th>From date</th>
+    <th>To date</th>
+    <th>Days</th>
+    <th>Reason</th>
+    <th>Leave Type</th>
+  </tr>
+</thead>
+<tbody>
+<% @user.leaves.each do |leave| %>
+  <tr>  
+    <td><%= leave.from_date.strftime("%d %b %y") %></td>
+    <td><%= leave.to_date.strftime("%d %b %y") %></td>
+    <td><%= leave.days %></td>
+    <td><%= leave.reason %></td>
+    <td><%= leave.leave_type.option %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>  
 <br/>
-               
+        
+                      
 <%= link_to t('.back', :default => t("helpers.links.back")),
               admin_users_path, :class => 'btn btn-primary'  %>
