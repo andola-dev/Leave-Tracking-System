@@ -11,7 +11,7 @@ namespace :lts do
 	    email = STDIN.gets.chomp
 	  end
 	  puts "Plz wait....."	
-	  if User.create(:name=>"Admin", :email => email,:password => password,:admin=>0)
+	  if User.create(:name=>"Admin", :email => email,:password => password,:admin=>1)
 	  puts "--  Successfully created an account for admin ----"
 	  end
   end
