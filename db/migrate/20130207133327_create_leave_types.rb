@@ -4,7 +4,7 @@ class CreateLeaveTypes < ActiveRecord::Migration
       t.string :type
       t.string :color
       t.integer :leave_count
-
+	  t.boolean :option 	
       t.timestamps
     end
   end
