@@ -1,5 +1,5 @@
 class LeaveType < ActiveRecord::Base
-  attr_accessible :color, :leave_count, :option
+  attr_accessible :type_name, :color, :leave_count, :option
   belongs_to :leave_type
   
   has_many :leaves,:class_name=>"Leave", :dependent => :destroy

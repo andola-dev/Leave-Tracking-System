@@ -92,7 +92,7 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>Type</label>
     <div class="controls">    
-       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ c.option, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true"%> 	    
+       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true"%> 	    
 
     <!--
        <select id="leave_leave_type_id" name="leave[leave_type_id]" style="width:100px">
