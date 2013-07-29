@@ -32,41 +32,58 @@ $('#leave_type_color').attr('value','#e81456');
       </ul>
     </div>
   <% end %>	
-<table class="table table-striped" id="newtab">
-	<thead>
-	    <tr>
-	      <th>Leave Type</th>
-	      <th>Color</th>
-	      <th>Count</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	        <tr>	 
-                   <td>
-			<%= f.text_field :type_name, :class => 'text_field',:required => "true" %>
-		   </td>
-		   <td>
-		       
-		       <div class="input-append color" data-color="#e81456" data-color-format="hex" id="cp3">
+  
+   <div class="control-group">
+    <label class='control-label'>Leave Type</label>
+    <div class="controls">
+     <%= f.text_field :option, :class => 'text_field',:required => "true" %>
+    </div>
+  </div>
+  
+   <div class="control-group">
+    <label class='control-label'>Color</label>
+    <div class="controls">
+     <div class="input-append color" data-color="#e81456" data-color-format="hex" id="cp3">
 			<%= f.text_field :color, :class => 'colorpicker text_field',:required => "true", :readonly =>"true" , :style=>"width:100px"%>
 			<span class="add-on" style="margin-top: 1px;"><i style="background-color: #e81456;"></i></span>			
 			</div>		
-			
-		   </td>
+
+
+    </div>
+  </div>
   
-                    <td>
-		     <%= f.text_field :leave_count, :class => 'text_field',:required => "true"%>
-	           </td>
-                   <td>		
-		       <%= f.submit "Submit", :class => 'btn btn-primary' %>
-                       <%= link_to t('.cancel',
-                                      :default => t("helpers.links.cancel")),
-                                      leave_types_path, :class => 'btn' %>
-		 </td>
+
+   <div class="control-group">
+    <label class='control-label'>Count</label>
+    <div class="controls">
+         <%= f.text_field :leave_count, :class => 'text_field',:required => "true"%>
+
+
+    </div>
+    </div>
+    
+   <div class="control-group">
+    <label class='control-label'>Description</label>
+    <div class="controls">
+         <%= f.text_area :description, :class => 'text_field',:required => "true", :rows=>3 %>
+    </div>
+    </div>
   
-                </tr>
-	</tbody>
-   </table>
+   <div class="control-group">
+    <label class='control-label'>Optional</label>
+    <div class="controls">  
+      <%= f.radio_button :is_optional, true %> Yes
+      <%= f.radio_button :is_optional, false%> No
+    </div>
+    </div>
+ 
   
+  <div class="form-actions">
+     <%= f.submit "Submit", :class => 'btn btn-primary' %>
+       <%= link_to t('.cancel',
+                      :default => t("helpers.links.cancel")),
+                      leave_types_path, :class => 'btn' %>
+
+  </div>
   
 <% end %>
