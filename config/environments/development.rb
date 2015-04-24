@@ -35,8 +35,8 @@ RGErp::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
-  config.action_mailer.default_url_options = { :host => '192.168.2.100:4000' }  
-  ##config.action_mailer.default_url_options = { :host => 'www.orangetrak.com:4000' }  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }  
+  
   
   config.action_mailer.delivery_method = :smtp
   
@@ -45,11 +45,11 @@ RGErp::Application.configure do
   
   ActionMailer::Base.delivery_method = :smtp
 	ActionMailer::Base.smtp_settings = {
-		:user_name => "info@andolasoft.com",
-		:password => "Test12345",
-		:domain => "em.andolasoft.co.in",
-		:address => "smtp.sendgrid.net",
-		:port => 587,
+		:user_name => "xxx@xxxx.com",
+		:password => "xxxxxx",
+		:domain => "<Your domain name>",
+		:address => "<smtp sendgrid>",
+		:port => "port number",
 		:authentication => :plain,
 		:enable_starttls_auto => true
   }
