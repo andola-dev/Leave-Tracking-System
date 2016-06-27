@@ -137,7 +137,8 @@
       <% end %>
 	    <%# if !((bootstrap_flash.include?("Signed in successfully.")) || (("You need to sign in or sign up before continuing."))) %>
 	    <% if !(bootstrap_flash.include?("Signed in successfully.")) %>
-                   <%= bootstrap_flash %>
+                   <%#= bootstrap_flash %>
+				   test
 	   <%end%>
           <%= yield %>
         </div>
