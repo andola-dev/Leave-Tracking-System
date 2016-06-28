@@ -1,0 +1,1 @@
+(function(){jQuery(function(){return $("#leave_tbl").dataTable({sPaginationType:"full_numbers",bJQueryUI:!0,bProcessing:!0,aaSorting:[],aoColumnDefs:[{bSortable:!1,aTargets:[2]}]})})}).call(this);
