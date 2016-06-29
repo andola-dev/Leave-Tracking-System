@@ -28,7 +28,7 @@
     <% LeaveType.find(:all, :order => 'id').each do |account|%>
      <div class="control-group">
        <% unless account.is_optional? %>
-         <label class='control-label'><%=account.option %> </label>
+         <label class='control-label'><%=account.type_name %> </label>
            <div class="controls"> 
            <%#=lvt.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ , c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true"%> 
             <%#= hidden_field_tag "leave_type_id", :value=>account.id %>   

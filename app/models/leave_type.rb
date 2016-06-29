@@ -1,5 +1,5 @@
 class LeaveType < ActiveRecord::Base
-  attr_accessible :color, :leave_count, :option,:is_optional, :description
+  attr_accessible :color, :leave_count, :option,:is_optional, :description, :type_name
   #belongs_to :leave_type
   has_many :leave_type_users
   

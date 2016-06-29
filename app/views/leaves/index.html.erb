@@ -20,7 +20,7 @@
     <td><%= leave.to_date.strftime("%d %b %y") %></td>
     <td><%= leave.days %></td>
     <td><%= leave.reason %></td>
-    <td><%= leave.leave_type.option %></td>
+    <td><%= leave.leave_type.type_name %></td>
     <td>
 	    <%#= link_to 'Show', leave , :class => 'btn btn-mini'%>
 	    <%= link_to 'Edit', edit_leafe_path(leave), :class => 'btn btn-mini' %>
