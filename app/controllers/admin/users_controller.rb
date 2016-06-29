@@ -59,8 +59,7 @@ class Admin::UsersController < ApplicationController
     #user=User.find params[:id]
     #@inventory_users=user.inventory_users
     @user=User.find params[:id]
-    @leaves = User.get_uniq_leaves_per_user(@user.id)
-
+    @leaves = (user_leaves = @user.leave_types.first).present? ? User.get_uniq_leaves_per_user(@user.id,user_leaves.id) : nil
   end
   
    def edit
