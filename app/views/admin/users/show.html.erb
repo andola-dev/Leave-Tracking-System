@@ -13,7 +13,7 @@
   <tbody>
     <% LeaveType.find(:all, :order => 'id').each do |account|%>
       <tr>
-       <td><%=account.option %></td>
+       <td><%=account.type_name %></td>
        <% actual =  LeaveTypeUser.by_user_and_leave_type(@user.id,account.id) %>
        <td><%= actual.first.leave_count if actual.first %>
        <%#= alc.first.leave_count %>
@@ -44,7 +44,7 @@
     <td><%= leave.to_date.strftime("%d %b %y") %></td>
     <td><%= leave.days %></td>
     <td><%= leave.reason %></td>
-    <td><%= leave.leave_type.option %></td>
+    <td><%= leave.leave_type.type_name %></td>
   </tr>
 <% end %>
 </tbody>
