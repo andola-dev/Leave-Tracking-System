@@ -14,7 +14,7 @@ class Leave < ActiveRecord::Base
       :start => from_date.rfc822,
       :end => to_date.rfc822,
 	    :color => "#"+SecureRandom.hex(3),
-	    :tip => "Type:" + self.leave_type.option + " Resson:" +  self.reason || ""
+	    :tip => "Type:" + self.leave_type.type_name + " Resson:" +  self.reason || ""
       
     }
     
