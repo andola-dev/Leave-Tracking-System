@@ -5,4 +5,5 @@ class LeaveType < ActiveRecord::Base
   
   has_many :leaves,:class_name=>"Leave", :dependent => :destroy
   has_many :users, :through => :leaves
+  validates :color, :uniqueness => true
 end

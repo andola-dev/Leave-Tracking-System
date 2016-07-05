@@ -16,6 +16,11 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def get_leave_status
+    @user = User.where("id=?",params[:user_id]).first    
+    render :partial => "user_leave_status"
+  end
   
   def search   
     str = "%#{params[:q]}%"; 

@@ -6,6 +6,7 @@
   <thead>
     <tr>    
       <th style="width:270px"><%= model_class.human_attribute_name(:name) %></th>
+      <th style="width:270px"><%= model_class.human_attribute_name(:color) %></th>
       <th style="width:300px"><%= model_class.human_attribute_name(:email) %></th>
       <th style="width:200px"><%= model_class.human_attribute_name(:created_at) %></th>
       <th style="width:150px"><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -20,6 +21,7 @@
           <%= link_to user.name, admin_user_path(user.id) %>
 
         </td>
+        <td><div style="width:20px;height:20px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;border:1px solid #E8FFF1;background-color:<%= user.color %>;-webkit-box-shadow: #B3B3B3 3px 3px 3px;-moz-box-shadow: #B3B3B3 3px 3px 3px; box-shadow: #B3B3B3 3px 3px 3px;"></div></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
         <td>
@@ -64,4 +66,4 @@ jQuery(function() {
   });
 });
 
-<script>
+</script>
