@@ -1,0 +1,50 @@
+<style>
+  table th,table td  {padding-left: 10px;}
+</style>
+<table>
+  <thead>
+    <tr>
+      <th>Leave type</th>
+      <!-- <th>Allocated type</th> -->
+      <th>Leaves Taken</th>
+      <th>Leaves Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% LeaveType.find(:all, :order => 'id').each do |account|%>
+      <tr>
+       <td><%=account.type_name %></td>
+       <% actual =  LeaveTypeUser.by_user_and_leave_type(@user.id,account.id) %>
+       <!-- <td><%#= actual.first.leave_count if actual.first %>
+       </td> -->
+       <% taken =  User.get_uniq_leaves_per_user(@user.id,account.id) %>
+       <td><%= !taken.blank? ? taken.first.days : "0" %></td>
+       <td><%= actual.first.present? ? actual.first.leave_count - (!taken.blank? ? taken.first.days : 0) : 0 %></td>
+      </tr>  
+    <%end%>
+  </tbody>
+</table>
+<br/>
+<%if @user.leaves.present?%>
+  <h5>Last leave taken as follows:</h5>
+  <table>
+    <thead>
+    <tr>   
+      <th>From date</th>
+      <th>To date</th>
+      <th>Days</th>
+      <th>Reason</th>
+      <th>Leave Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>  
+      <td><%= @user.leaves.last.from_date.strftime("%d %b %y") %></td>
+      <td><%= @user.leaves.last.to_date.strftime("%d %b %y") %></td>
+      <td><%= @user.leaves.last.days %></td>
+      <td><%= @user.leaves.last.reason %></td>
+      <td><%= @user.leaves.last.leave_type.type_name %></td>
+    </tr>
+  </tbody>
+  </table>
+<%end%>

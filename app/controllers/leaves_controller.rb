@@ -6,10 +6,14 @@ class LeavesController < ApplicationController
 
   def index
     @leaves = Leave.all
+    leaves = [] 
+    @leaves.each do |event|
+      leaves << {:id => event.id, :title => event.user.name, :description => event.reason, :color => event.user.color || "Some cool description here...", :color => event.user.color, :start => "#{event.from_date.iso8601}", :end => "#{event.to_date.iso8601}"}
+    end
     respond_to do |format|
       format.html # index.html.erb
 	   format.xml  { render :xml => @leaves }
-      format.json { render json: @leaves}
+      format.json { render json: leaves}
     end
   end
 
@@ -93,7 +97,7 @@ def calendar
     @events.each do |event|
       events << {:id => event.id, :title => event.user.name, :description => event.reason || "Some cool description here...", :start => "#{event.from_date.iso8601}", :end => "#{event.to_date.iso8601}"}
     end
-    #render :text => events.to_json
+    # render :text => events.to_json
 end 
   
   def get_leave_count_per_user

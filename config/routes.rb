@@ -10,6 +10,7 @@ RGErp::Application.routes.draw do
   match "/search"  => "users#search", :via => [:get,:post]
   match "/calendar"  => "leaves#calendar", :via => [:get,:post]
   match "/get_leave_count_per_user" => "leaves#get_leave_count_per_user", :via => [:get,:post]
+  match "/get_leave_status" => "users#get_leave_status", :via => [:get,:post]
 
   resources :users
   namespace :admin do

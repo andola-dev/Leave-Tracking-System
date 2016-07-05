@@ -15,25 +15,40 @@
 	    <tr>
 	      <th>Name</th>
 	      <th>Email</th>
+        <th>Color</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	     <tr>	 
-                   <td>
-		       <%= f.text_field :name, :class => 'text_field',:required => "true" ,:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')"%>
-		   </td>
+            <td>
+		          <%= f.text_field :name, :class => 'text_field',:required => "true" ,:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')"%>
+		        </td>
   
-                    <td>
-		       <%= f.text_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
-	            </td>
-                    <td>		
-		        <%= f.submit "Submit", :class => 'btn btn-primary' %>
-                        <%= link_to t('.cancel', 
-                                       :default => t("helpers.links.cancel")),
-                                       admin_users_path, :class => 'btn' %>
-		    </td>
+            <td>
+	             <%= f.text_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
+	         </td>
+           <td>
+             <div class="input-append color" data-color="#e81456" data-color-format="hex" id="usercp3">
+              <%= f.text_field :color, :class => 'colorpicker text_field',:required => "true", :readonly =>"true"%>
+              <span class="add-on" style="margin-top: 1px;"><i style="background-color: #e81456;"></i></span>     
+              </div>    
+            </td>
+            <td>		
+		          <%= f.submit "Submit", :class => 'btn btn-primary' %>
+              <%= link_to t('.cancel', 
+                                      :default => t("helpers.links.cancel")),
+                                      admin_users_path, :class => 'btn' %>
+	          </td>
   
-                 </tr>
+          </tr>
 	      </tbody>
       </table>
 <% end %>
+<%= javascript_include_tag 'jquery',"bootstrap-colorpicker" %>
+<script>
+  $(function(){
+  $('#user_color').attr('value','#e81456');
+    $('#usercp3').colorpicker({format: 'hex',color:'#e81456'})
+    
+  });     
+</script>

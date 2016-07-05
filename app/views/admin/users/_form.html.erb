@@ -16,14 +16,25 @@
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field',:required => "true" ,:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')"%>
     </div>
-  </div>
- 
+  </div>  
+
    <div class="control-group">
     <label class='control-label'>Email</label>
     <div class="controls">
       <%= f.email_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
     </div>
   </div>
+
+  <div class="control-group">
+      <label class='control-label'>Color</label>
+      <div class="controls">
+       <div class="input-append color" data-color="#e81456" data-color-format="hex" id="usercp3">
+        <%= f.text_field :color, :class => 'colorpicker text_field',:required => "true", :readonly =>"true" , :style=>"width:100px"%>
+        <span class="add-on" style="margin-top: 1px;"><i style="background-color: #e81456;"></i></span>     
+        </div>
+      </div>
+    </div>
+  
   <% i=1  %>
     <% LeaveType.find(:all, :order => 'id').each do |account|%>
      <div class="control-group">
@@ -64,3 +75,11 @@
  
  
 <% end %>
+<%= javascript_include_tag 'jquery',"bootstrap-colorpicker" %>
+<script>
+  $(function(){
+  $('#user_color').attr('value','#e81456');
+    $('#usercp3').colorpicker({format: 'hex',color:'#e81456'})
+    
+  });     
+</script>
