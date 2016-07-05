@@ -92,7 +92,7 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>Type</label>
     <div class="controls">    
-       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true"%> 	    
+       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true", :style => "width:34%;"%> 	    
 
     <!--
        <select id="leave_leave_type_id" name="leave[leave_type_id]" style="width:100px">
@@ -104,8 +104,9 @@ $('#leave_user_id').on('change', function() {
 	<%end%>     
        </select> 
     -->
-    </div>
+    </div>    
   </div>
+  <div id="leave_status" style="float:right;margin: -12% -2%;width:50%"></div>
 
    <div class="control-group">
     <label class='control-label'>Reason</label>
@@ -153,4 +154,27 @@ function calculate_date(){
     }
     
 }
+  $("#leave_leave_type_id").change(function() {
+    var id = $("#leave_user_id").val();
+    $.ajax({
+      type: "GET",
+      url: "/get_leave_status",
+      dataType: 'json',
+      async: true,
+      data: {user_id: id},
+      beforeSend: function(){
+      //$("#task_loader").show();
+      },
+      success: function(data)
+      {
+        // alert('success')
+      },
+      error: function(data) {
+      //$("#task_loader").hide();
+      },
+      complete: function(data) {
+        $('#leave_status').html(data.responseText);
+      }
+    });
+  });
 </script>
