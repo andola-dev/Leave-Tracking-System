@@ -26,7 +26,7 @@ end
 gem 'event-calendar', :require => 'event_calendar'
 
 gem 'jquery-rails', '~>2.1.4'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~>2.0.2'
 gem 'jquery-datatables-rails'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-calendar'
