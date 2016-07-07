@@ -11,7 +11,16 @@
     </tr>
   </thead>
   <tbody>
-   
+    <% LeaveType.find(:all, :order => 'id').each do |account|%>
+      <tr>
+       <td><%=account.type_name %></td>
+       <% actual =  LeaveTypeUser.by_user_and_leave_type(@user.id,account.id) %>
+       <td><%= actual.first.leave_count if actual.first %>
+       <%#= alc.first.leave_count %>
+       </td>
+       
+      </tr>  
+    <%end%>
   </tbody>
 </table>
 </div>
