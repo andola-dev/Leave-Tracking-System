@@ -28,9 +28,9 @@
 	             <%= f.text_field :email, :class => 'text_field',:required => "true",:onkeyup=>"this.value=this.value.replace (/(^\s*)/gi, '').replace (/[ ]{2,}/gi,' ')" %>
 	         </td>
            <td>
-             <div class="input-append color" data-color="#e81456" data-color-format="hex" id="usercp3">
+             <div class="input-append color" data-color="<%=@user.color%>" data-color-format="hex" id="usercp3">
               <%= f.text_field :color, :class => 'colorpicker text_field',:required => "true", :readonly =>"true"%>
-              <span class="add-on" style="margin-top: 1px;"><i style="background-color: #e81456;"></i></span>     
+              <span class="add-on" style="margin-top: 1px;"><i style="background-color: <%=@user.color%>;"></i></span>     
               </div>    
             </td>
             <td>		
@@ -47,8 +47,8 @@
 <%= javascript_include_tag 'jquery',"bootstrap-colorpicker" %>
 <script>
   $(function(){
-  $('#user_color').attr('value','#e81456');
-    $('#usercp3').colorpicker({format: 'hex',color:'#e81456'})
+  $('#user_color').attr('value','<%=@user.color%>');
+    $('#usercp3').colorpicker({format: 'hex',color:'<%=@user.color%>'})
     
   });     
 </script>
