@@ -50,11 +50,11 @@
             <ul class="nav pull-right">
 	             <%if user_signed_in? and current_user.admin?%>
 					 <%if (params[:controller] == "leaves") && (params[:action] != "calendar") %><li class="active_mnu"><%else%><li><%end%>
-					  <%= link_to "Leave Management", leaves_path  %></li>
+					  <%= link_to "Leave", leaves_path  %></li>
 					 <%if params[:controller] == "leave_types"%><li class="active_mnu"><%else%><li><%end%>
-					  <%= link_to "Leave Type Management", leave_types_path  %></li>
+					  <%= link_to "Leave Type", leave_types_path  %></li>
 					 <%if params[:controller] == "admin/users"%><li class="active_mnu"><%else%><li><%end%>
-					  <%= link_to "User Management", admin_users_path  %></li>
+					  <%= link_to "User", admin_users_path  %></li>
 					
 	             <%end%>
                 <% if user_signed_in?%>
