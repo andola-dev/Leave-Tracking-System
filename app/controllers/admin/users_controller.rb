@@ -78,7 +78,10 @@ class Admin::UsersController < ApplicationController
       end
     end
    end
-  
+  def show_history
+    @user = User.find(params[:id])
+    render :partial => "show_history_button"
+  end
   
   private
     def authenticate_admin

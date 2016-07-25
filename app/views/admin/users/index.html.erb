@@ -59,10 +59,12 @@
 
 jQuery(function() {
   return $('#users').dataTable({
+    "order": [[ 0, "asc" ]],
     sPaginationType: "full_numbers",
     bJQueryUI: true,
     bProcessing: true,
-    aaSorting: []
+    // aaSorting: []
+
   });
 });
 

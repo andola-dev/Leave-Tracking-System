@@ -2,8 +2,8 @@ RGErp::Application.routes.draw do
 
   resources :leave_types
   resources :leaves 
-  #root :to => redirect("/users/sign_in")
-  root :to => redirect("/calendar")
+  root :to => redirect("/users/sign_in")
+  # root :to => redirect("/calendar")
   devise_for :users, :skip => "registrations"
   match "/save_password"  => "users#save_password", :via => [:put]
   match "/change_password"  => "users#change_password"
@@ -11,6 +11,8 @@ RGErp::Application.routes.draw do
   match "/calendar"  => "leaves#calendar", :via => [:get,:post]
   match "/get_leave_count_per_user" => "leaves#get_leave_count_per_user", :via => [:get,:post]
   match "/get_leave_status" => "users#get_leave_status", :via => [:get,:post]
+  match "/show_history/:id" => "admin/users#show_history", :via => [:get,:post]
+  
 
   resources :users
   namespace :admin do

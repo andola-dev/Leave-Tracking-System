@@ -1,7 +1,7 @@
 <style>
   table th,table td  {padding-left: 10px;}
 </style>
-<table>
+<table border="1">
   <thead>
     <tr>
       <th>Leave type</th>
@@ -26,8 +26,8 @@
 </table>
 <br/>
 <%if @user.leaves.present?%>
-  <h5>Last leave taken as follows:</h5>
-  <table>
+  <h5>Last leave taken :</h5>
+  <table border="1">
     <thead>
     <tr>   
       <th>From date</th>
@@ -38,13 +38,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>  
-      <td><%= @user.leaves.last.from_date.strftime("%d %b %y") %></td>
-      <td><%= @user.leaves.last.to_date.strftime("%d %b %y") %></td>
-      <td><%= @user.leaves.last.days %></td>
-      <td><%= @user.leaves.last.reason %></td>
-      <td><%= @user.leaves.last.leave_type.type_name %></td>
-    </tr>
+    <% last_three = Leave.where(:user_id => @user.id).last(3) %>
+    <% last_three.each do |u| %>
+      <tr>  
+        <td><%= u.from_date.strftime("%d %b %y") %></td>
+        <td><%= u.to_date.strftime("%d %b %y") %></td>
+        <td><%= u.days %></td>
+        <td><%= u.reason %></td>
+        <td><%= u.leave_type.type_name %></td>
+      </tr>
+    <% end %>
   </tbody>
   </table>
 <%end%>

@@ -4,10 +4,10 @@
 
 jQuery ->
         $('#leave_tbl').dataTable
+          "order": [[ 1, "desc" ]]
           sPaginationType: "full_numbers"
           bJQueryUI: true
           bProcessing: true
-          aaSorting: []
           aoColumnDefs: [
             bSortable: false
             aTargets: [2]
