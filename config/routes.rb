@@ -11,7 +11,6 @@ RGErp::Application.routes.draw do
   match "/calendar"  => "leaves#calendar", :via => [:get,:post]
   match "/get_leave_count_per_user" => "leaves#get_leave_count_per_user", :via => [:get,:post]
   match "/get_leave_status" => "users#get_leave_status", :via => [:get,:post]
-  match "/show_history/:id" => "admin/users#show_history", :via => [:get,:post]
   
 
   resources :users

@@ -1,7 +1,8 @@
 <style>
   table th,table td  {padding-left: 10px;}
 </style>
-<table border="1">
+<div>
+<table class="user_leave_status">
   <thead>
     <tr>
       <th>Leave type</th>
@@ -27,7 +28,7 @@
 <br/>
 <%if @user.leaves.present?%>
   <h5>Last leave taken :</h5>
-  <table border="1">
+  <table class="user_leave_status">
     <thead>
     <tr>   
       <th>From date</th>
@@ -44,10 +45,16 @@
         <td><%= u.from_date.strftime("%d %b %y") %></td>
         <td><%= u.to_date.strftime("%d %b %y") %></td>
         <td><%= u.days %></td>
-        <td><%= u.reason %></td>
+        <td style="text-align: left"><%= u.reason %></td>
         <td><%= u.leave_type.type_name %></td>
       </tr>
     <% end %>
   </tbody>
   </table>
 <%end%>
+</div>
+<div class="fr">
+  <% if @user %>
+  <%= link_to "Show History","/admin/users/#{@user.id}", :class => 'btn btn-primary', :style => "margin-top: 10px"%>
+<% end %>
+</div>
