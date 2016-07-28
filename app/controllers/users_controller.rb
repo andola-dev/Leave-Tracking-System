@@ -18,7 +18,11 @@ class UsersController < ApplicationController
   end
 
   def get_leave_status
-    @user = User.where("id=?",params[:user_id]).first    
+    @user = User.where("id=?",params[:user_id]).first 
+    @user_id = @user.id  
+    p '~~~~~~~~~~~~~~'
+    p @user_id
+    p '-------------------' 
     render :partial => "user_leave_status"
   end
   

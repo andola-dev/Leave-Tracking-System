@@ -79,7 +79,6 @@ class Admin::UsersController < ApplicationController
     end
    end
   
-  
   private
     def authenticate_admin
       if !current_user.admin?

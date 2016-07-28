@@ -37,17 +37,19 @@ $('#leave_user_id').on('change', function() {
   if(this.value != ""){  
     $("input[type='text'],textarea").removeAttr("disabled");
     $('select#leave_leave_type_id').removeAttr("disabled");
+    $("#leave_days").attr("disabled","true");
   }else{
     $("input[type='text'],textarea").attr("disabled","true");
     $("input[type='text'],textarea").val('')
     $('select#leave_leave_type_id').attr("disabled","true");
+    $("#leave_leave_type_id").val("");
   }
 });
 });
 
 
 </script>
-<%= form_for @leave ,:html => { :class => 'form-horizontal well' } do |f| %>
+<%= form_for @leave ,:html => { :class => 'form-horizontal width_500' } do |f| %>
   <% if @leave.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this leave from being saved:</h2>
@@ -62,7 +64,7 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>User</label>
     <div class="controls">
-      <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true"%> 	
+      <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null and name is NOT NULL and name != ''", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table"%> 	
     </div>
   </div>
 
@@ -90,8 +92,7 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>Type</label>
     <div class="controls">    
-       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id').collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true", :style => "width:34%;"%> 	    
-
+       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id', :conditions => ['type_name not in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]} + LeaveType.find(:all, :order => 'id', :conditions => ['type_name in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table", :disabled => true %>  	    
     <!--
        <select id="leave_leave_type_id" name="leave[leave_type_id]" style="width:100px">
 	<% LeaveType.find(:all, :order => 'id').each do |account|%>
@@ -102,9 +103,9 @@ $('#leave_user_id').on('change', function() {
 	<%end%>     
        </select> 
     -->
-    </div>
+    </div>    
   </div>
-  <div id="leave_status" style="float:right;margin: -12% -2%;width:50%"></div>
+  <!-- <div id="leave_status" style="float:right;margin: -12% -2%;width:50%"></div> -->
    <div class="control-group">
     <label class='control-label'>Reason</label>
     <div class="controls">
@@ -113,14 +114,19 @@ $('#leave_user_id').on('change', function() {
   </div>
 
    <div class="form-actions">
+    <div class="fl">
      <%= f.submit "Submit", :class => 'btn btn-primary', :onclick=>"return validate_date();" %>
      <%= link_to t('.cancel',:default => t("helpers.links.cancel")),leaves_path, :class => 'btn' %>
-
+    </div>
+    <div class="fr" id="show_history">
+          
+    </div>
    </div>
 
 
 <% end %>
 <script>
+
 function validate_date(){
 	var fr_value = $("#leave_from_date").val();
 	var to_value = $("#leave_to_date").val();
@@ -151,27 +157,36 @@ function calculate_date(){
     }
     
 }
-  $("#leave_leave_type_id").change(function() {
+  // $("#leave_leave_type_id").change(function() {
+  $(".leave_status_table").change(function() {
     var id = $("#leave_user_id").val();
-    $.ajax({
-      type: "GET",
-      url: "/get_leave_status",
-      dataType: 'json',
-      async: true,
-      data: {user_id: id},
-      beforeSend: function(){
-      //$("#task_loader").show();
-      },
-      success: function(data)
-      {
-        // alert('success')
-      },
-      error: function(data) {
-      //$("#task_loader").hide();
-      },
-      complete: function(data) {
-        $('#leave_status').html(data.responseText);
-      }
-    });
+    var leave_id = $("#leave_leave_type_id").val();
+    // alert(leave_id);
+
+    if( leave_id != null && leave_id != "" && id != null && id != "" ){
+      $.ajax({
+        type: "GET",
+        url: "/get_leave_status/",
+        dataType: 'json',
+        async: true,
+        data: {user_id: id},
+        beforeSend: function(){
+        //$("#task_loader").show();
+        },
+        success: function(data)
+        {
+          // alert('success')
+        },
+        error: function(data) {
+        //$("#task_loader").hide();
+        },
+        complete: function(data) {
+          $('#leave_status').html(data.responseText);
+        }
+      });
+    }
+    else{
+      $('#leave_status').html("");
+    }
   });
 </script>
