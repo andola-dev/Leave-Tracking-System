@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_filter :get_user, :only =>[:block_user, :unblock_user]
   
   def index
-    @users = User.where("admin =?", false).order("created_at DESC")
+    @users = User.where("admin =?", false).order("name ASC")
   end 
  
   def new
