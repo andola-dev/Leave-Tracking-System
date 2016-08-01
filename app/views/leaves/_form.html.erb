@@ -65,7 +65,7 @@ $('#leave_user_id').on('change', function() {
     <label class='control-label'>User</label>
     <div class="controls">
       <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null and name is NOT NULL and name != ''", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table"%> 	
-    </div>
+    </div>  
   </div>
 
   <div class="control-group">
