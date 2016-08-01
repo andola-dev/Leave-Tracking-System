@@ -11,4 +11,4 @@ jQuery ->
           aoColumnDefs: [
             bSortable: false
             aTargets: [2]
-          ]
+          ]       
