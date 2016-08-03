@@ -8,6 +8,5 @@ jQuery ->
           bProcessing: true
           aaSorting: []
           aoColumnDefs: [
-            bSortable: false
-            aTargets: [2]
+            { 'bSortable': false, 'aTargets': [ 1, 3 ] }
           ]

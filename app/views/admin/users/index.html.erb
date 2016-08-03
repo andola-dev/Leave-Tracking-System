@@ -56,13 +56,17 @@
             :class => 'btn btn-primary' %>
 
 <script>
-//jQuery(function() {
-//  return $('#users').dataTable({
-//    "order": [[ 0, "asc" ]],
-//    sPaginationType: "full_numbers",
-//    bJQueryUI: true,
-//    bProcessing: true,
-//    // aaSorting: []
-//  });
-//});
-</script> 
+jQuery(function() {
+  return $('#users').dataTable({
+    "order": [[ 0, "asc" ]],
+    sPaginationType: "full_numbers",
+    bJQueryUI: true,
+    bProcessing: true,
+    "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ 1, 4 ] }
+       ]
+
+  });
+});
+
+</script>

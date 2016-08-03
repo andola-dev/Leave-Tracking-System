@@ -53,8 +53,8 @@
   </table>
 <%end%>
 </div>
-<div class="fr">
+<div class="fr" style="margin-top: 10px">
   <% if @user %>
-  <%= link_to "Show History","/admin/users/#{@user.id}", :class => 'btn btn-primary', :style => "margin-top: 10px"%>
+  <%= link_to "Show History","/admin/users/#{@user.id}"%>
 <% end %>
 </div>

@@ -47,6 +47,9 @@ class LeavesController < ApplicationController
   # POST /leaves
   # POST /leaves.json
   def create
+    p "~~~~~~~~~~~~~~~~~"
+    p params
+    p "~~~~~~~~~~~~~"
     @leave = Leave.new(params[:leave])
     @leave.from_date = DateTime.strptime("#{params[:leave][:from_date]}", "%m/%d/%Y")
     @leave.to_date = DateTime.strptime("#{params[:leave][:to_date]}", "%m/%d/%Y")

@@ -83,22 +83,22 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>#of Days</label>
     <div class="controls">
-      <%= f.text_field :days, :class => 'text_field',:required => "true", :disabled=>"true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4 %>
+      <%= f.text_field :days, :class => 'text_field',:required => "true", :disabled=>"true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4, :style => "width:50px" %>
     </div>
   </div>
 
   <div class="control-group">
     <label class='control-label'>Type</label>
     <div class="controls">    
-       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id', :conditions => ['type_name not in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]} + LeaveType.find(:all, :order => 'id', :conditions => ['type_name in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table", :disabled => true %>  	    
+       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id', :conditions => ['type_name not in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]} + LeaveType.find(:all, :order => 'id', :conditions => ['type_name in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table", :disabled => true %>
     <!--
        <select id="leave_leave_type_id" name="leave[leave_type_id]" style="width:100px">
-	<% LeaveType.find(:all, :order => 'id').each do |account|%>
-		<option value="<%=account.id%>" class="select_leave" style="color:<%=account.color %>;" >
-		<span class="select_leave" ></span>
-		<%=account.option %> 
-		</option>
-	<%end%>     
+  <% LeaveType.find(:all, :order => 'id').each do |account|%>
+    <option value="<%=account.id%>" class="select_leave" style="color:<%=account.color %>;" >
+    <span class="select_leave" ></span>
+    <%=account.option %> 
+    </option>
+  <%end%>     
        </select> 
     -->
     </div>    
@@ -126,12 +126,12 @@ $('#leave_user_id').on('change', function() {
 <script>
 
 function validate_date(){
-	var fr_value = $("#leave_from_date").val();
-	var to_value = $("#leave_to_date").val();
-	if (fr_value > to_value){
-	alert("From Date must be less than the To Date!")
-	return false;
-	}
+  var fr_value = $("#leave_from_date").val();
+  var to_value = $("#leave_to_date").val();
+  if (fr_value > to_value){
+  alert("From Date must be less than the To Date!")
+  return false;
+  }
 
 }
 function calculate_date(){
@@ -187,4 +187,5 @@ function calculate_date(){
       $('#leave_status').html("");
     }
   });
+
 </script>
