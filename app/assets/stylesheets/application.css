@@ -8,12 +8,52 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require dataTables/src/demo_table_jui
  *= require "bootstrap_and_overrides"
  *= require colorpicker
  *= require fullcalendar
- *= require static
+ *= require_self
+ *= require_tree .
  */
+   
+@media print {
+  body { background-color: #FFF; }
+  .container-fluid {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+        
+  #line_items {
+          page-break-before: always;
+  }
+}
+
+.fl{
+  float:left;
+}
+
+.fr{
+  float:right;
+}
+.user_leave_status{
+  border-collapse: collapse;
+}
+.user_leave_status, .user_leave_status tr, .user_leave_status tr th, .user_leave_status tr td{
+  border: 1px solid #aaa;
+  text-align: center;
+  padding: 3px 5px;
+}
+
+
+.user_leave_status{
+  border-collapse: collapse;
+}
+.user_leave_status, .user_leave_status tr, .user_leave_status tr th, .user_leave_status tr td{
+  border: 1px solid #aaa;
+  text-align: center;
+  padding: 3px 5px;
+}
