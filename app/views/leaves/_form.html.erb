@@ -85,7 +85,7 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>#of Days</label>
     <div class="controls">
-      <%= f.text_field :days, :class => 'text_field',:required => "true", :disabled=>"true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4 %>
+      <%= f.text_field :days, :class => 'text_field',:required => "true", :disabled=>"true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4, :style => "width:50px" %>
     </div>
   </div>
 

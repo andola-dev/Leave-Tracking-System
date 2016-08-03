@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "LTS - Leave Tracking System" %></title>
-	    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
+      <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>    
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -48,25 +48,25 @@
 
           <div class="container-fluid nav-collapse">
             <ul class="nav pull-right">
-	             <%if user_signed_in? and current_user.admin?%>
-					 <%if (params[:controller] == "leaves") && (params[:action] != "calendar") %><li class="active_mnu"><%else%><li><%end%>
-					  <%= link_to "Leave Management", leaves_path  %></li>
-					 <%if params[:controller] == "leave_types"%><li class="active_mnu"><%else%><li><%end%>
-					  <%= link_to "Leave Type Management", leave_types_path  %></li>
-					 <%if params[:controller] == "admin/users"%><li class="active_mnu"><%else%><li><%end%>
-					  <%= link_to "User Management", admin_users_path  %></li>
-					
-	             <%end%>
+               <%if user_signed_in? and current_user.admin?%>
+           <%if (params[:controller] == "leaves") && (params[:action] != "calendar") %><li class="active_mnu"><%else%><li><%end%>
+            <%= link_to "Leave", leaves_path  %></li>
+           <%if params[:controller] == "leave_types"%><li class="active_mnu"><%else%><li><%end%>
+            <%= link_to "Leave Type", leave_types_path  %></li>
+           <%if params[:controller] == "admin/users"%><li class="active_mnu"><%else%><li><%end%>
+            <%= link_to "User", admin_users_path  %></li>
+          
+               <%end%>
                 <% if user_signed_in?%>
                 <li>
-	                <div class="btn-group">
-	                  <a class="btn btn-inverse" href="javascript:void(0)"><%= current_user.name.capitalize %></a> 
-	                  <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-	                  <ul class="dropdown-menu">
-	                    <li><%= link_to "Change Password", change_password_path %></li>
-	                    <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete   %></li>
-	                  </ul>
-	                </div>
+                  <div class="btn-group">
+                    <a class="btn btn-inverse" href="javascript:void(0)"><%= current_user.name.capitalize %></a> 
+                    <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "Change Password", change_password_path %></li>
+                      <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete   %></li>
+                    </ul>
+                  </div>
                 </li>
                
               <% else %>
@@ -85,44 +85,44 @@
     
     <div class="container-fluid">
       <div class="row-fluid">
-	  
+    
       <% if user_signed_in? && params[:action] != "work_order_sheet" %>
-	  <div class="page-header">
-		  <h1><%#=t '.title', :default => model_class.model_name.human.pluralize %>
-			  <% if (params[:controller] == "leaves" && params[:action] == "index") %>
-			  Listing leaves
-			  <%elsif (params[:controller] == "leaves" && params[:action] == "new") %>
-			  New leave
-			  <%elsif (params[:controller] == "leaves" && params[:action] == "edit") %>
-			  Editing leave			  
-			  <%elsif (params[:controller] == "leave_types" && params[:action] == "index") %>
-			  Listing Leave Type
-			  <%elsif (params[:controller] == "leave_types" && params[:action] == "new") %>
-			  New Leave Type
-			  <%elsif (params[:controller] == "leave_types" && params[:action] == "edit") %>
-			  Editing Leave Type
-			  <%elsif (params[:controller] == "inventories" && params[:action] == "show") %>
-			  Inventory
-			  <%elsif (params[:controller] == "inventories" && params[:action] == "new") %>
-			  New Inventory
-			 
-			  <%end%>
-		  </h1>
-	 </div>
+    <div class="page-header">
+      <h1><%#=t '.title', :default => model_class.model_name.human.pluralize %>
+        <% if (params[:controller] == "leaves" && params[:action] == "index") %>
+        Listing leaves
+        <%elsif (params[:controller] == "leaves" && params[:action] == "new") %>
+        New leave
+        <%elsif (params[:controller] == "leaves" && params[:action] == "edit") %>
+        Editing leave       
+        <%elsif (params[:controller] == "leave_types" && params[:action] == "index") %>
+        Listing Leave Type
+        <%elsif (params[:controller] == "leave_types" && params[:action] == "new") %>
+        New Leave Type
+        <%elsif (params[:controller] == "leave_types" && params[:action] == "edit") %>
+        Editing Leave Type
+        <%elsif (params[:controller] == "inventories" && params[:action] == "show") %>
+        Inventory
+        <%elsif (params[:controller] == "inventories" && params[:action] == "new") %>
+        New Inventory
+       
+        <%end%>
+      </h1>
+   </div>
           <!--<div class="span7 fl">
             <div class="well sidebar-nav">
               <ul class="nav nav-list">
                 <%if current_user.admin?%>
-					  <li><%= link_to "Calendar View", "/calendar"  %></li>
-					  <li><%= link_to "Leave Management", leaves_path  %></li>
-					  
-					  <li><%= link_to "Leave Type Management", leave_types_path  %></li>
-					<% if params[:controller] == "admin/users" %>
-					  <li class="active_mnu"><%= link_to "User Management", admin_users_path  %></li>
-					<%else%>  
-					  <li><%= link_to "User Management", admin_users_path  %></li>
-					<%end%>
-					
+            <li><%= link_to "Calendar View", "/calendar"  %></li>
+            <li><%= link_to "Leave Management", leaves_path  %></li>
+            
+            <li><%= link_to "Leave Type Management", leave_types_path  %></li>
+          <% if params[:controller] == "admin/users" %>
+            <li class="active_mnu"><%= link_to "User Management", admin_users_path  %></li>
+          <%else%>  
+            <li><%= link_to "User Management", admin_users_path  %></li>
+          <%end%>
+          
                <%end%>
                 
               </ul>
@@ -131,21 +131,21 @@
       <%end%>
       <% if user_signed_in? && current_user.admin?%>
        <!-- <div  class="span27 fl">-->
-       	<div>
+        <div>
       <% else %>
         <div>
       <% end %>
-	    <%# if !((bootstrap_flash.include?("Signed in successfully.")) || (("You need to sign in or sign up before continuing."))) %>
-	    <% if !(bootstrap_flash.include?("Signed in successfully.")) %>
+      <%# if !((bootstrap_flash.include?("Signed in successfully.")) || (("You need to sign in or sign up before continuing."))) %>
+      <% if !(bootstrap_flash.include?("Signed in successfully.")) %>
                    <%= bootstrap_flash %>
-	   <%end%>
+     <%end%>
           <%= yield %>
         </div>
       </div><!--/row-->
 
     </div> <!-- /container -->
-	<div class="push_down"></div>
-	<footer>
+  <div class="push_down"></div>
+  <footer>
         <div class="footer_bg">Developed by <a href="http://www.andolasoft.com/" target="_blank">Andolasoft</a> (<b><i>Team ROR</b></i>)</div>
     </footer>
     <!-- Javascripts
