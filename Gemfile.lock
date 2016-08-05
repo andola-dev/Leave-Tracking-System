@@ -73,9 +73,10 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.5.0)
-    mysql2 (0.3.11)
     orm_adapter (0.4.0)
+    pg (0.18.4)
     polyglot (0.3.3)
+    puma (3.4.0)
     rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -146,7 +147,8 @@ DEPENDENCIES
   jquery-ui-rails (~> 2.0.2)
   less-rails (= 2.2.6)
   libv8 (= 3.3.10.4)
-  mysql2 (= 0.3.11)
+  pg
+  puma
   rails (= 3.2.9)
   sass-rails (~> 3.2.3)
   therubyracer (= 0.10.2)

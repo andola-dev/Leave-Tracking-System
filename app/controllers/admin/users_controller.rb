@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_filter :get_user, :only =>[:block_user, :unblock_user]
   
   def index
-    @users = User.where("admin =?", false).order("name")
+    @users = User.where("admin =?", false).order("name ASC")
   end 
  
   def new
@@ -78,7 +78,6 @@ class Admin::UsersController < ApplicationController
       end
     end
    end
-  
   
   private
     def authenticate_admin

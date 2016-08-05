@@ -2,7 +2,7 @@
 <%= javascript_include_tag  "fullcalendar" %>
 <%if !user_signed_in?%> <div class="page-header"></div><%end%>
 <div style="width:100%" class="sup_mc">
-<div style="position:absolute;margin-left:270px;width:110px; margin-bottom:10px;font-weight:bold;font-size: 16px;"><%= link_to "+ New Leave", new_leafe_path, :class=>"but_evnt"  if user_signed_in?%></div>
+<div style="position:absolute;margin-left:270px;width:110px; margin-bottom:10px;font-weight:bold;font-size: 16px;"><%= link_to "+ New Leave", new_leafe_path, :class=>"but_evnt" if user_signed_in?%></div>
 <div id='calendar'></div>
 <div style="clear:both;height:20px"></div>
 </div>

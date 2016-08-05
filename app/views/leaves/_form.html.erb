@@ -15,6 +15,7 @@ function disable_fields(){
 }
 $( document ).ready(function() {
   $(".checkbox").hide();
+  $('.checkbox').attr('checked', false);
   if($("#leave_user_id").val()){  
     enable_fields();
   }else{
@@ -63,9 +64,7 @@ $('#leave_user_id').on('change', function() {
   }else{
     disable_fields();
   }
-
 });
-
 });
 </script>       
 <%= form_for @leave ,:html => { :class => 'form-horizontal width_500' } do |f| %>
@@ -83,7 +82,7 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>User</label>
     <div class="controls">
-      <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null and name is NOT NULL and name != ''", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table"%>   
+      <%=f.select :user_id, User.find(:all, :conditions => [ "admin = ? and locked_at is null and name is NOT NULL and name != ''", false ] ,:order => 'name').collect {|c| [ c.name, c.id ]}, {:include_blank => '- Name -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table"%> 	
     </div>               
   </div>
 
@@ -133,7 +132,6 @@ $('#leave_user_id').on('change', function() {
     </div>    
   </div>
   <!-- <div id="leave_status" style="float:right;margin: -12% -2%;width:50%"></div> -->
-
    <div class="control-group">
     <label class='control-label'>Reason</label>
     <div class="controls">
@@ -179,6 +177,7 @@ function calculate_date(){
     if (d>0){
     $('#leave_days').val(d);
     $(".checkbox").hide();
+    $('.checkbox').attr('checked', false);
     }
     else if(d==0){
       $('#leave_days').val('1');
@@ -186,6 +185,7 @@ function calculate_date(){
     }else{
     $('#leave_days').val('');
     $(".checkbox").hide();
+    $('.checkbox').attr('checked', false);
     }
 }
 // Condition to check the leave day is half day or not

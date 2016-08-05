@@ -5,7 +5,7 @@ class LeavesController < ApplicationController
   before_filter :authenticate_user!, :except=>[:calendar, :index]  
 
   def index
-    @leaves = Leave.find(:all, :order => "created_at DESC")
+    @leaves = Leave.order("from_date DESC")
     leaves = [] 
     @leaves.each do |event|
       leaves << {:id => event.id, :title => event.user.name, :description => event.reason, :color => event.user.color || "Some cool description here...", :color => event.user.color, :start => "#{event.from_date.iso8601}", :end => "#{event.to_date.iso8601}"}

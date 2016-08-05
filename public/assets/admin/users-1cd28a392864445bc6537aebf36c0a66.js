@@ -1,0 +1,1 @@
+(function(){jQuery(function(){return $("#users").dataTable({sPaginationType:"full_numbers",bJQueryUI:!0,bProcessing:!0,aaSorting:[]})})}).call(this);

@@ -26,8 +26,7 @@ var defaults = {
 		center: '',
 		right: 'today prev,next'
 	},
-	weekends: true,
-	
+	weekends: true,	
 	// editing
 	//editable: false,
 	//disableDragging: false,
@@ -54,8 +53,7 @@ var defaults = {
 	},
 	timeFormat: { // for event elements
 		'': 'h(:mm)t' // default
-	},
-	
+	},	
 	// locale
 	isRTL: false,
 	firstDay: 0,
@@ -91,7 +89,7 @@ var defaults = {
 // right-to-left defaults
 var rtlDefaults = {
 	header: {
-		left: 'next,prev today',
+		left: 'next, prev today',
 		center: '',
 		right: 'title'
 	},

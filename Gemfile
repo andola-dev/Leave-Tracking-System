@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-
+ruby "1.9.3"
 gem 'rails', '3.2.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '0.3.11'
-
+#gem 'mysql2', '0.3.11'
+gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -18,14 +18,17 @@ group :assets do
   gem 'libv8', '3.3.10.4'
   gem 'less-rails', '2.2.6'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
-  gem 'jquery-datatables-rails'#, github: 'rweng/jquery-datatables-rails'
-  gem 'jquery-ui-rails', '~>2.0.2'
+  #gem 'twitter-bootstrap-rails'
+  #gem 'jquery-datatables-rails'#, github: 'rweng/jquery-datatables-rails'
+  #gem 'jquery-ui-rails', '~>2.0.2'
 end
 
 gem 'event-calendar', :require => 'event_calendar'
 
 gem 'jquery-rails', '~>2.1.4'
+gem 'jquery-ui-rails', '~>2.0.2'
+gem 'jquery-datatables-rails'
+gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-calendar'
 
 # To use ActiveModel has_secure_password
@@ -44,3 +47,4 @@ gem 'twitter-bootstrap-calendar'
 # gem 'debugger'
 gem 'devise', '~>2.1.2'
 gem 'gotcha'
+gem 'puma'
