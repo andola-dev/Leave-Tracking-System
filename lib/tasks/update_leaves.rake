@@ -8,7 +8,7 @@ namespace :leave do
 			days_count = (d2-d1)/(60*60*24)
 			puts "---- Total number of days: #{days_count}"
 			nl.update_column(:days,days_count)
-			puts "-------- Successfully updated days count for user name:#{leave.user.name}"
+			puts "-------- Successfully updated days count for user name:#{nl.user.name}"
 	 	end
 	 end
 end
