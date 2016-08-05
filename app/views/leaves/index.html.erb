@@ -7,7 +7,7 @@
     <th>Days</th>
     <th>Reason</th>
     <th>Leave Type</th>
-    <th></th>
+    <th>Action</th>
   
   </tr>
 </thead>
@@ -15,10 +15,16 @@
 <% @leaves.each do |leave| %>
 <%#=leave.class%>
   <tr>
-    <td><%= leave.user.name %></td>
+    <td><%= link_to leave.user.name, admin_user_path(leave.user.id) %>
     <td><%= leave.from_date.strftime("%d %b %y") %></td>
     <td><%= leave.to_date.strftime("%d %b %y") %></td>
-    <td><%= leave.days %></td>
+    <td>
+      <% if leave.days != 0.5 %>
+        <%= leave.days.to_i %>  
+      <% else %>
+        <%= leave.days %> 
+      <% end %>  
+    </td>
     <td><%= leave.reason %></td>
     <td><%= leave.leave_type.type_name %></td>
     <td>

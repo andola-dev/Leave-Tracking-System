@@ -4,12 +4,12 @@
 
 
 jQuery ->
-        $('#inventory_list').dataTable
-          sPaginationType: "full_numbers"
-          bJQueryUI: true
-          bProcessing: true
-          aaSorting: []
-          aoColumnDefs: [
-            bSortable: false
-            aTargets: [2]
-          ]
+    $('#inventory_list').dataTable
+      sPaginationType: "full_numbers"
+      bJQueryUI: true
+      bProcessing: true
+      aaSorting: []
+      aoColumnDefs: [
+        bSortable: false
+        aTargets: [2]
+      ]

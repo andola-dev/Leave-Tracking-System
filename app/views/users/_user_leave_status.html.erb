@@ -53,8 +53,10 @@
   </table>
 <%end%>
 </div>
-<div class="fr" style="margin-top: 10px">
-  <% if @user %>
-  <%= link_to "Show History","/admin/users/#{@user.id}"%>
+<% unless last_three.nil? %>
+  <div class="fr" style="margin-top: 10px">
+    <% if @user %>
+    <%= link_to "Show History","/admin/users/#{@user.id}"%>
+  <% end %>
+  </div>
 <% end %>
-</div>

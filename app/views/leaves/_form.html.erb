@@ -1,6 +1,29 @@
 <%= javascript_include_tag "jquery", "bootstrap-datepicker" %>
 <%= stylesheet_link_tag "datepicker" %>
 <script>
+// Disable all fields if name field is not selected
+function enable_fields() {
+  $("input[type='text'],textarea").removeAttr("disabled");
+  $('select#leave_leave_type_id').removeAttr("disabled");
+}
+
+function disable_fields(){
+  $("input[type='text'],textarea").attr("disabled","true");
+  $("input[type='text'],textarea").val('')
+  $('select#leave_leave_type_id').attr("disabled","true");
+  $("#leave_leave_type_id").val("");
+}
+$( document ).ready(function() {
+  $(".checkbox").hide();
+  if($("#leave_user_id").val()){  
+    enable_fields();
+  }else{
+    disable_fields();
+  }
+});
+
+
+
 $(function(){
   //$('.datepicker').datepicker({dateFormat: 'mm-dd-yyyy',"autoclose": true})
   //$("[data-behaviour~='datepicker']").datepicker({
@@ -8,7 +31,7 @@ $(function(){
   //    "weekStart": 1,
   //    "autoclose": true
   //});
-$('select#leave_leave_type_id').attr("disabled","true");
+// $('select#leave_leave_type_id').attr("disabled","true");
 var nowTemp = new Date();
 var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  
@@ -34,15 +57,11 @@ var checkout = $('#leave_to_date').datepicker({
   checkout.hide();
 }).data('datepicker');
 $('#leave_user_id').on('change', function() {
-  if(this.value != ""){  
-    $("input[type='text'],textarea").removeAttr("disabled");
-    $('select#leave_leave_type_id').removeAttr("disabled");
-    $("#leave_days").attr("disabled","true");
+  if(this.value){  
+    enable_fields();
+    // $("#leave_days").attr("disabled","true"); 
   }else{
-    $("input[type='text'],textarea").attr("disabled","true");
-    $("input[type='text'],textarea").val('')
-    $('select#leave_leave_type_id').attr("disabled","true");
-    $("#leave_leave_type_id").val("");
+    disable_fields();
   }
 
 });
@@ -71,37 +90,44 @@ $('#leave_user_id').on('change', function() {
   <div class="control-group">
     <label class='control-label'>From Date</label>
     <div class="controls">
-      <%= f.text_field :from_date , :class => 'datepicker text_field',:required => "true", :disabled=>"true" %>
+      <%= f.text_field :from_date , :class => 'datepicker text_field',:required => "true" %>
     </div>
   </div>
 
   <div class="control-group">
     <label class='control-label'>To Date</label>
     <div class="controls">
-      <%= f.text_field :to_date , :class => 'datepicker text_field',:required => "true", :disabled=>"true", :onblur =>"calculate_date()" %>
+      <%= f.text_field :to_date , :class => 'datepicker text_field',:required => "true", :onblur =>"calculate_date()" %>
     </div>
   </div>
 
   <div class="control-group">
     <label class='control-label'>#of Days</label>
-    <div class="controls">
-      <%= f.text_field :days, :class => 'text_field',:required => "true", :disabled=>"true",:onkeyup=>"this.value=this.value.replace(/[^0-9 .]/g,'');", :maxlength=>4, :style => "width:50px" %>
+    <div class="fl" style="margin-left: 21px">
+      <%= f.text_field :days, :class => 'text_field',:required => "true", :maxlength=>4, :style => "width:50px" %>
     </div>
+    <!-- If from_date and to_date is same enable a check box to confirm leave is half day or not -->
+    <div class="fl" style="margin: 5px 0px 0px 15px;">
+      <div class="checkbox">
+        <label><%= check_box_tag("half_day", "half_day", false, :onclick=>"check_half_day();")%>Half day</label>
+      </div>
+    </div>
+    
   </div>
 
   <div class="control-group">
     <label class='control-label'>Type</label>
     <div class="controls">    
-       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id', :conditions => ['type_name not in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]} + LeaveType.find(:all, :order => 'id', :conditions => ['type_name in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table", :disabled => true %>       
+       <%=f.select :leave_type_id, LeaveType.find(:all, :order => 'id', :conditions => ['type_name not in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]} + LeaveType.find(:all, :order => 'id', :conditions => ['type_name in (?)', "Others"] ).collect {|c| [ c.type_name, c.id ]}, {:include_blank => '- Select Leave Type -'},  :required => "true", :style => "width:220px;", :class => "leave_status_table" %>       
 
     <!--
        <select id="leave_leave_type_id" name="leave[leave_type_id]" style="width:100px">
-  <% LeaveType.find(:all, :order => 'id').each do |account|%>
-    <option value="<%=account.id%>" class="select_leave" style="color:<%=account.color %>;" >
+  <%# LeaveType.find(:all, :order => 'id').each do |account|%>
+    <option value="<%#=account.id%>" class="select_leave" style="color:<%#=account.color %>;" >
     <span class="select_leave" ></span>
-    <%=account.option %> 
+    <%#=account.option %> 
     </option>
-  <%end%>     
+  <%#end%>     
        </select> 
     -->
     </div>    
@@ -111,7 +137,7 @@ $('#leave_user_id').on('change', function() {
    <div class="control-group">
     <label class='control-label'>Reason</label>
     <div class="controls">
-      <%= f.text_area :reason, :rows=>5 , :disabled=>"true"%>
+      <%= f.text_area :reason, :rows=>5 %>
     </div>
   </div>
 
@@ -138,6 +164,7 @@ function validate_date(){
   }
 
 }
+var d;
 function calculate_date(){
     var date1 = $("#leave_from_date").val();
     var date2 = $("#leave_to_date").val();
@@ -148,16 +175,28 @@ function calculate_date(){
     var d2=new Date(y[2],(y[0]-1),y[1]);         
     var a = d1.getTime();
     var b = d2.getTime();  
-    var d = (b-a)/z;   
+    d = (b-a)/z;   
     if (d>0){
     $('#leave_days').val(d);
+    $(".checkbox").hide();
     }
     else if(d==0){
-    $('#leave_days').val('1');
+      $('#leave_days').val('1');
+      $(".checkbox").show();
     }else{
     $('#leave_days').val('');
+    $(".checkbox").hide();
     }
-    
+}
+// Condition to check the leave day is half day or not
+function check_half_day(){
+  if(d == 0){
+    if($("#half_day").prop("checked") == true){
+      $('#leave_days').val('0.5');
+    }
+    else
+      $('#leave_days').val('1');
+  }
 }
   // $("#leave_leave_type_id").change(function() {
   $(".leave_status_table").change(function() {

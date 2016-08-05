@@ -10,5 +10,5 @@ jQuery ->
           aaSorting: []
           aoColumnDefs: [
             bSortable: false
-            aTargets: [2]
+            aTargets: [2, 4, 5, 6]
           ]
