@@ -1,8 +1,7 @@
 class LeavesController < ApplicationController
   # GET /leaves
   # GET /leaves.json
- # before_filter :authenticate_user!, :except=>[:calendar]
-  before_filter :authenticate_user!, :except=>[:calendar, :index]  
+  # before_filter :authenticate_user!, :except=>[:calendar, :index]  
 
   def index
     @leaves = Leave.order("from_date DESC")
