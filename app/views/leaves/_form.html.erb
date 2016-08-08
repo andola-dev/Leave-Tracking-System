@@ -175,7 +175,7 @@ function calculate_date(){
     var b = d2.getTime();  
     d = (b-a)/z;   
     if (d>0){
-    $('#leave_days').val(d);
+    $('#leave_days').val(d + 1);
     $(".checkbox").hide();
     $('.checkbox').attr('checked', false);
     }
