@@ -11,11 +11,9 @@
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require dataTables/src/demo_table_jui
- *= require "bootstrap_and_overrides"
  *= require colorpicker
  *= require fullcalendar
  *= require_self
- *= require_tree .
  */
    
 @media print {

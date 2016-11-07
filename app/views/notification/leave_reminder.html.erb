@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leave Reminder</title>
+	<style type="text/css">
+		table {
+    		border-collapse: collapse;
+    		width: 100%;
+		}
+		table, th, td {
+		    border: 1px solid black;
+		}
+		th, td{padding: 8px 15px;text-align: center}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12">
+			<div class="reminder_wrapper" style="padding: 20px;">
+				<table style="">
+					<caption><h1>Upcoming Leave</h1></caption>
+					<thead>
+						<th>Name</th>
+						<th>From</th>
+						<th>To</th>
+						<th>Days</th>
+					</thead>
+					<tbody>
+						<% @leaves.each do |leave| %>
+							<tr>
+								<td><%= leave.user.name %></td>
+								<td><%= leave.from_date.strftime('%a, %d - %b') %></td>
+								<td><%= leave.to_date.strftime('%a, %d - %b') %></td>
+								<td>
+							      	<% if leave.days != 0.5 %>
+							        	<%= leave.days.to_i %>  
+							      	<% else %>
+							        	<%= leave.days %> 
+							      	<% end %>  
+							    </td>
+						    </tr>
+						<%end%>
+					</tbody>
+				</table>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

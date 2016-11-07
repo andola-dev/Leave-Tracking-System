@@ -1,28 +1,9 @@
-# SQLite version 3.x
-#   gem install sqlite3
 development:
-  adapter: postgresql
-  username: wbzorrwrzzxzjv
-  password:  nvC4955M8YSEGGhbkTLFCuNHr4
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false  
+  database: LTS_dev
   pool: 5
-  database: daak1qss983dod
-  host: ec2-54-83-31-65.compute-1.amazonaws.com
-  port: 5432
-
-test:
-  adapter: postgresql
-  username: wbzorrwrzzxzjv
-  password:  nvC4955M8YSEGGhbkTLFCuNHr4
-  pool: 5
-  database: daak1qss983dod
-  host: ec2-54-83-31-65.compute-1.amazonaws.com
-  port: 5432
-
-production:
-  adapter: postgresql
-  username: wbzorrwrzzxzjv
-  password:  nvC4955M8YSEGGhbkTLFCuNHr4
-  pool: 5
-  database: daak1qss983dod
-  host: ec2-54-83-31-65.compute-1.amazonaws.com
-  port: 5432
+  username: root
+  password: andola
+  port: 3306

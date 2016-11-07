@@ -45,13 +45,13 @@ RGErp::Application.configure do
   
   ActionMailer::Base.delivery_method = :smtp
 	ActionMailer::Base.smtp_settings = {
-		:user_name => "xxx@xxxx.com",
-		:password => "xxxxxx",
-		:domain => "<Your domain name>",
-		:address => "<smtp sendgrid>",
-		:port => "port number",
-		:authentication => :plain,
-		:enable_starttls_auto => true
-  }
+    :address => "smtp.gmail.com",
+    :port    => 587,
+    :domain  => "gmail.com",
+    :user_name  => "test@andolasoft.com",
+    :password   => "test123!",
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  } 
   
 end

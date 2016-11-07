@@ -1,23 +1,19 @@
 @import "twitter/bootstrap/bootstrap";
 @import "twitter/bootstrap/responsive";
-@import "bootswatch/variables.less";
-@import "bootswatch/bootswatch.less";
 
 // Set the correct sprite paths
-@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings");
-@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white");
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
-//       have the proper paths. So for now we use the absolute path.
-@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot");
-@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot#iefix");
-@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff");
-@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf");
-@fontAwesomeSvgPath: asset-path("fontawesome-webfont.svg");
+@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
 
 // Font Awesome
-@import "fontawesome";
+@import "fontawesome/font-awesome";
 
 // Glyphicons
 //@import "twitter/bootstrap/sprites.less";
@@ -32,100 +28,3 @@
 //
 // Example:
 // @linkColor: #ff0000;
-
-html, body {
-	height:100%;
-}
-
-.container-fluid{
-	min-height:80%;
-	margin-bottom:0px auto -30px;
-	height: auto !important;
-	height: 100%;
-}
-
-.dl-horizontal dd{
-margin-left:20px;
-float:left;
-}
-
-select{
-width:auto;
-}
-
-@gridColumns:35;
-
-
-.shpping_order_detail{
-	background:#fff;
-	min-height: 250px;
-	height:auto;
-	margin: 0 auto;
-	width:900px;
-	display:none;
-	position:absolute; 
-	left:0px;
-	right:0px;
-	top:150px;
-	z-index:999;
-	border-radius:10px;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	padding:10px 20px 20px 20px;
-}
-#fade_back_listing
-{
-	position:fixed;
-	top:0;
-	bottom:0; 
-	left:0;
-	right:0; 
-	opacity:0.7;
-	display:none;
-	background:none repeat scroll 0 0 #333333;
-	z-index:1;
-}
-
-.close_pop{
-	position:absolute;
-	right:5px;
-	top:5px
-}
-
-.ui-icon{float:right}
-.navbar{margin-bottom:0px;}
-.page-header{margin:0px 20px;}
-.table td.rht_pad15{text-align:right;padding-right:15px;}
-footer,.push_down{height:30px;}
-.footer_bg{
-	background:#033C74;
-    color: #FFFFFF;
-    padding: 5px 0;
-    text-align: center;
-    width: 100%;
-	font-size:12px;
-}
-.footer_bg a{color: #FFFFFF;}
-.nav-list > li > a{margin-bottom:1px;out-line:none;}
-.navbar .nav > li > a {  padding: 15px 10px 14px;}
-.active_mnu a,.nav > li > a:hover{
-	background: #022C55;    
- color: #FFFFFF;
- text-decoration: none;
- margin-bottom:1px;
-}
-.navbar-inner{border-radius:0px}
-.alert-success{position: absolute;top: 67px;left:26%;width: 600px;}
-.alert-error{position: absolute;top: 67px;left:37%;width: 600px;}
-
-.form_con{border: 1px solid #E3E3E3;border-radius: 4px;padding: 8px 0px;}
-.form_con.pad_2{padding: 8px 2px;}	
-
-.wl_strch.well{padding: 41px 35px 40px;}
-
-
-#leave_leave_type_id option { 
-height:40px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;border:1px solid #E8FFF1;-webkit-box-shadow: #B3B3B3 2px 2px 2px;-moz-box-shadow: #B3B3B3 2px 2px 2px; box-shadow: #B3B3B3 2px 2px 2px; 
-}
-.selectsd_leave{width:40px;height:40px;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;border:1px solid #E8FFF1;-webkit-box-shadow: #B3B3B3 2px 2px 2px;-moz-box-shadow: #B3B3B3 2px 2px 2px; box-shadow: #B3B3B3 2px 2px 2px; }
-.custom_container{width:70%}

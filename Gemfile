@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+# ruby "1.9.3"
 gem 'rails', '3.2.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'mysql2', '0.3.11'
-gem 'pg'
+gem 'mysql2', '0.3.18'
+# gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -32,8 +32,8 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-calendar'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
+gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'bcrypt', '~> 3.1.10'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
@@ -45,6 +45,6 @@ gem 'twitter-bootstrap-calendar'
 
 # To use debugger
 # gem 'debugger'
-gem 'devise', '~>2.1.2'
+gem 'devise', '~>3.4.1'
 gem 'gotcha'
 gem 'puma'

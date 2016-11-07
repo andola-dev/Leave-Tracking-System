@@ -2,7 +2,7 @@
 
 <%- model_class = User -%>
 
-<table class="table table-striped" id="users">
+<table class="table table-striped" id="users_list">
   <thead>
     <tr>    
       <th style="width:270px"><%= model_class.human_attribute_name(:name) %></th>
@@ -57,7 +57,7 @@
 
 <script>
 jQuery(function() {
-  return $('#users').dataTable({
+  return $('#users_list').dataTable({
     "order": [[ 0, "asc" ]],
     sPaginationType: "full_numbers",
     bJQueryUI: true,

@@ -11,7 +11,9 @@ RGErp::Application.routes.draw do
   match "/calendar"  => "leaves#calendar", :via => [:get,:post]
   match "/get_leave_count_per_user" => "leaves#get_leave_count_per_user", :via => [:get,:post]
   match "/get_leave_status" => "users#get_leave_status", :via => [:get,:post]
+  match "/send_leave_notification" => "leaves#send_leave_notification", :via => [:get,:post]
   
+
 
   resources :users
   namespace :admin do
